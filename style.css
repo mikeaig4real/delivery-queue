@@ -192,6 +192,8 @@ td {
     aside {
         height: 50%;
         width: 100%;
+        border-right: none;
+        border-bottom: 0.1rem solid rgb(104, 111, 111);
     }
 
     section {
