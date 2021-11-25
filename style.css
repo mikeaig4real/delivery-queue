@@ -80,7 +80,7 @@ li {
     height: fit-content;
     text-transform: capitalize;
     border-radius: 0.25rem;
-    color: azure;
+    color: rgba(248, 250, 250, 0.83);
     user-select: none;
     cursor: grab;
 }
@@ -88,7 +88,8 @@ li {
 li span {
     font-weight: bold;
     text-transform: uppercase;
-    color: black;
+    color: rgba(18, 19, 19, 0.981);
+    letter-spacing: 2px;
 }
 
 h2 {
