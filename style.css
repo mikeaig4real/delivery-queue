@@ -178,10 +178,15 @@ td {
     }
 }
 
-@media screen and (max-width:400px) {
+@media screen and (max-width:600px) {
     main {
         flex-direction: column;
         overflow-y: scroll;
+        padding: 1rem 0.5rem;
+    }
+
+    ul {
+        flex-wrap: wrap;
     }
 
     aside {
