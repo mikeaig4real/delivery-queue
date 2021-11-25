@@ -1,0 +1,53 @@
+{
+  "customers": [
+    {
+      "id": 0,
+      "name": "mike",
+      "up": "lekki",
+      "off": "ajah",
+      "inSlot":null
+    },
+    {
+      "id": 1,
+      "name": "esther",
+      "up": "lekki",
+      "off": "victoria island",
+      "inSlot":null
+    },
+    {
+      "id": 2,
+      "name": "victor",
+      "up": "yaba",
+      "off": "ajah",
+      "inSlot":null
+    },
+    {
+      "id": 3,
+      "name": "mariya",
+      "up": "kansas",
+      "off": "ajah",
+      "inSlot":null
+    },
+    {
+      "id": 4,
+      "name": "amen",
+      "up": "lekki",
+      "off": "istanbul",
+      "inSlot":null
+    },
+    {
+      "id": 5,
+      "name": "busayo",
+      "up": "ipaja",
+      "off": "ajah",
+      "inSlot":null
+    },
+    {
+      "id": 6,
+      "name": "imole",
+      "up": "lekki",
+      "off": "ikorodu",
+      "inSlot":null
+    }
+  ]
+}
