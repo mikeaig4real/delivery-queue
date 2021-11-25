@@ -25,7 +25,8 @@ body {
 }
 
 main {
-    background-color: white;
+    background-color: rgba(235, 243, 243, 0.248);
+    border: 1px solid white;
     height: 80vh;
     width: 95vw;
     max-width: 95vw;
