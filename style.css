@@ -30,9 +30,9 @@ main {
     width: 95vw;
     max-width: 95vw;
     max-height: 80vh;
-    padding: 3rem 1rem;
+    padding: 3rem 0.5rem;
     border-radius: 1rem;
-    box-shadow: 0 9px 1rem rgb(179, 191, 191);
+    box-shadow: 0 9px 1rem rgb(104, 111, 111);
     display: flex;
     align-items: stretch;
     justify-content: space-between;
@@ -46,7 +46,7 @@ aside {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-right: 0.1rem solid rgb(179, 191, 191);
+    border-right: 0.1rem solid rgb(104, 111, 111);
 }
 
 ul {
@@ -67,13 +67,13 @@ ul::-webkit-scrollbar {
 }
 
 ul::-webkit-scrollbar-thumb {
-    background-color: rgb(179, 191, 191);
+    background-color: rgb(104, 111, 111);
     height: 0.6rem;
     border-radius: 0.6rem;
 }
 
 li {
-    background-color: rgba(62, 65, 65, 0.693);
+    background-color: rgb(104, 111, 111);
     margin: 0.5rem;
     padding: 0.3rem;
     width: 10rem;
@@ -114,7 +114,7 @@ section::-webkit-scrollbar {
 }
 
 section::-webkit-scrollbar-thumb {
-    background-color: rgb(179, 191, 191);
+    background-color: rgb(104, 111, 111);
     width: 0.3rem;
     height: 0.6rem;
     border-radius: 0.6rem;
@@ -125,17 +125,24 @@ table {
         sans-serif;
     min-width: 100%;
     height: 100%;
+    position: relative;
     text-transform: capitalize;
     border-collapse: collapse;
     user-select: none;
 }
 
 table col:not(:last-child) {
-    border-right: 0.1rem solid rgb(179, 191, 191);
+    border-right: 0.1rem solid rgb(104, 111, 111);
 }
 
 table tr:not(:last-child) {
-    border-bottom: 0.1rem solid rgb(179, 191, 191);
+    border-bottom: 0.1rem solid rgb(104, 111, 111);
+}
+
+table tr:nth-child(2) {
+    background-color: rgb(179, 191, 191);
+    position: sticky;
+    top: 0;
 }
 
 .special {
@@ -165,3 +172,21 @@ td {
         flex-wrap: wrap;
     }
 }
+
+@media screen and (max-width:400px) {
+    main {
+        flex-direction: column;
+        overflow-y: scroll;
+    }
+
+    aside {
+        height: 50%;
+        width: 100%;
+    }
+
+    section {
+        height: 50%;
+        width: 100%;
+    }
+}
+
