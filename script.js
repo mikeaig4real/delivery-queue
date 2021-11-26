@@ -16,7 +16,7 @@ class Data {
 function afterSeven() {
     const currentDate = new Date();
     const [month, day, year] = [currentDate.getMonth(), currentDate.getDate(), currentDate.getFullYear()];
-    const nextDays = [7, 8, 9, 10, 11, 12, 13].map((num) => {
+    const nextDays = [8, 9, 10, 11, 12, 13, 14].map((num) => {
         return new Date(year, month, day + num).toUTCString().slice(0,-13);
     });
     return nextDays;
