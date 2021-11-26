@@ -22,6 +22,7 @@ body {
     justify-content: center;
     font-family: 'Open Sans',
         sans-serif;
+    flex-direction: column;
 }
 
 main {
@@ -50,7 +51,7 @@ aside {
     border-right: 0.1rem solid rgb(104, 111, 111);
 }
 
-ul {
+div {
     font-family: 'Barlow Condensed',
         sans-serif;
     overflow-y: scroll;
@@ -61,19 +62,19 @@ ul {
     align-items: flex-start;
 }
 
-ul::-webkit-scrollbar {
+div::-webkit-scrollbar {
     background-color: transparent;
     width: 0.3rem;
     height: 0.5rem;
 }
 
-ul::-webkit-scrollbar-thumb {
+div::-webkit-scrollbar-thumb {
     background-color: rgb(104, 111, 111);
     height: 0.6rem;
     border-radius: 0.6rem;
 }
 
-li {
+article {
     background-color: rgb(104, 111, 111);
     margin: 0.5rem;
     padding: 0.3rem;
@@ -88,7 +89,7 @@ li {
     height: fit-content;
 }
 
-li span {
+article span {
     font-weight: bold;
     text-transform: uppercase;
     color: rgba(18, 19, 19, 0.981);
@@ -166,9 +167,8 @@ th {
 td {
     text-align: center;
     padding: 0.5rem;
-    height: 5rem;
-    min-height: max-content;
-    min-width: max-content;
+    max-width: 1rem;
+    max-height: 1rem;
 }
 
 
