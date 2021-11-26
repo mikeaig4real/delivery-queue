@@ -60,6 +60,8 @@ div {
     width: 100%;
     max-height: 90%;
     align-items: flex-start;
+    min-height: 90%;
+    min-width: 90%;
 }
 
 div::-webkit-scrollbar {
