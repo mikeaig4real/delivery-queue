@@ -52,6 +52,8 @@ function handleDrop(e) {
     const element = document.getElementById(dataId);
     // returning the element to list
     if (e.target.id === 'list-dom') {
+        element.dataset.date = '';
+        element.dataset.slot = '';
         e.target.appendChild(element);
         Storage.setItems();
     }
@@ -64,6 +66,8 @@ function handleDrop(e) {
         e.target.dataset.empty = 'false';
         // set items incell value
         element.dataset.incell = 'true';
+        element.dataset.date = e.target.dataset.date;
+        element.dataset.slot = e.target.dataset.slot;
         Storage.setItems();
     } else {
         // swap deliveries
@@ -72,12 +76,28 @@ function handleDrop(e) {
             const parentCell = element.parentElement;
             // append that child to it
             parentCell.appendChild(e.target.firstChild);
+            e.target.firstChild.dataset.date = parentCell.dataset.date;
+            e.target.firstChild.dataset.slot = parentCell.dataset.slot;
             parentCell.dataset.empty = 'false';
             // do the same to the other
             e.target.appendChild(element);
+            element.dataset.date = e.target.dataset.date;
+            element.dataset.slot = e.target.dataset.slot;
             e.target.dataset.empty = 'false';
             // set both cell empty values to be false
             Storage.setItems();
+        }
+    }
+}
+
+
+function getDS(id) {
+    let slots = [...document.querySelectorAll("body > main > section > table > tbody > tr:nth-child(2) :not(:first-child)")].map(cell => cell.innerText);
+    let dates = afterSeven();
+    let total = slots.length * dates.length;
+    for (let i = 0; i < total; i++){
+        if (String(id) == String(i)) {
+            return [slots[i % slots.length], dates[Math.floor(i / slots.length)]];
         }
     }
 }
@@ -87,7 +107,6 @@ function loadItems(data) {
     // prepare deliveries
     data.forEach((data, index) => {
         const { id, name, up, off } = data;
-        // console.log(data);
         const article = document.createElement('article');
         article.innerHTML = `customer: <span class="name">${name}</span><br>
                              id: <span class="id">${id}</span><br>
@@ -98,6 +117,8 @@ function loadItems(data) {
         article.draggable = 'true';
         article.addEventListener('dragstart', handleDragStart);
         article.dataset.incell = data.incell || 'false';
+        article.dataset.date = data.date || '';
+        article.dataset.slot = data.slot || '';
         listsDom.appendChild(article);
     });
     // Storage.setItems();
@@ -107,14 +128,14 @@ function loadItems(data) {
         cell.addEventListener('dragover', handleDragOver);
         cell.addEventListener('drop', handleDrop);
         cell.dataset.empty = 'true';
+        cell.dataset.date = getDS(index)[1];
+        cell.dataset.slot = getDS(index)[0];
     });
     let starter = Storage.getItems();
     if (starter[1]) {
-        // console.log(starter[1])
         starter[1].forEach((cell) => {
-            let { cellid,listname, listid, listup, listoff, listincell, cellempty, listmainid } = cell;
+            let { listdate, listslot, cellid,listname, listid, listup, listoff, listincell, cellempty, listmainid } = cell;
             let cellEle = document.getElementById(cellid);
-            // console.log(cellEle);
             if (cellEle) {
                 const article = document.createElement('article');
                 article.innerHTML = `customer: <span class="name">${listname}</span><br>
@@ -126,6 +147,8 @@ function loadItems(data) {
                 article.draggable = 'true';
                 cellEle.dataset.empty = cellempty;
                 article.addEventListener('dragstart', handleDragStart);
+                article.dataset.date = listdate;
+                article.dataset.slot = listslot;
                 article.dataset.incell = listincell;
                 cellEle.appendChild(article);
             }
@@ -154,6 +177,8 @@ class Storage {
                 listObj.up = list.querySelector('.up').innerText;
                 listObj.off = list.querySelector('.off').innerText;
                 listObj.incell = list.dataset.incell;
+                listObj.date = list.dataset.date;
+                listObj.slot = list.dataset.slot;
                 deliveriesList = [...deliveriesList, listObj];
             };
         });
@@ -169,14 +194,18 @@ class Storage {
                 cellObj.listincell = cell.firstChild.dataset.incell;
                 cellObj.listmainid = cell.firstChild.id
                 cellObj.cellempty = cell.dataset.empty;
+                cellObj.listdate = cell.firstChild.dataset.date;
+                cellObj.listslot = cell.firstChild.dataset.slot;
                 cellsList = [...cellsList, cellObj];
             };
         });
+        // MySQL Database Logic goes here....[all info needed in both arrays]
         localStorage.setItem('delivery',JSON.stringify(deliveriesList));
         localStorage.setItem('cells',JSON.stringify(cellsList));
     }
 
     static getItems() {
+        // MySQL Database Logic goes here....[all info needed in both arrays]
         const deliveriesList = JSON.parse(localStorage.getItem('delivery'));
         const cellsList = JSON.parse(localStorage.getItem('cells'));
         return [deliveriesList, cellsList];
