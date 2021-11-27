@@ -76,8 +76,8 @@ function handleDrop(e) {
             const parentCell = element.parentElement;
             // append that child to it
             parentCell.appendChild(e.target.firstChild);
-            e.target.firstChild.dataset.date = parentCell.dataset.date;
-            e.target.firstChild.dataset.slot = parentCell.dataset.slot;
+            parentCell.firstChild.dataset.date = parentCell.dataset.date;
+            parentCell.firstChild.dataset.slot = parentCell.dataset.slot;
             parentCell.dataset.empty = 'false';
             // do the same to the other
             e.target.appendChild(element);
